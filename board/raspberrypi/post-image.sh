@@ -6,7 +6,7 @@ BOARD_DIR="$(dirname $0)"
 GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
-cp "${BINARIES_DIR}/rpi-firmware/cmdline.txt" "${BINARIES_DIR}/rpi-firmware/autoboot.txt"
+cp "${BOARD_DIR}/autoboot-a.txt" "${BOARD_DIR}/autoboot-b.txt" "${BINARIES_DIR}"
 echo "root=/dev/mmcblk0p5 rootwait console=tty1 console=serial0" >"${BINARIES_DIR}/cmdline-a.txt"
 echo "root=/dev/mmcblk0p6 rootwait console=tty1 console=serial0" >"${BINARIES_DIR}/cmdline-b.txt"
 

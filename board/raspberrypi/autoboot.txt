@@ -1,2 +1,0 @@
-[all]
-boot_partition=2
