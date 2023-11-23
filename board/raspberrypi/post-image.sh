@@ -19,4 +19,6 @@ genimage \
 	--outputpath "${BINARIES_DIR}" \
 	--config "${GENIMAGE_CFG}"
 
+bmaptool create -o "${BINARIES_DIR}/sdcard.bmap" "${BINARIES_DIR}/sdcard.img"
+
 exit $?
