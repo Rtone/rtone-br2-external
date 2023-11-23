@@ -1,0 +1,22 @@
+rtone-br2-external is a Buildroot br2-external tree to generate embedded
+Linux systems through cross-compilation.
+
+Online documentation can be found at http://buildroot.org/docs.html
+
+To build and use the buildroot stuff, do the following:
+
+0) run 'git clone https://git.buildroot.net/buildroot'
+1) run 'make -C buildroot menuconfig BR2_EXTERNAL=$PWD'
+2) select the target architecture and the packages you wish to compile
+3) run 'make -C buildroot'
+4) wait while it compiles
+5) find the kernel, bootloader, root filesystem, etc. in buildroot/output/images
+
+You do not need to be root to build or run buildroot.  Have fun!
+
+Please feed suggestions, bug reports, insults, and bribes back to the
+git repository: https://github.com/rtone/rtone-br2-external/issues
+You can also contact us at https://rtone.fr/contact.
+
+If you would like to contribute patches, please make pull requests to
+https://github.com/rtone/rtone-br2-external/pulls
