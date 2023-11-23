@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+[Unit]
+Description=Buildroot /boot vfat
+Before=local-fs.target
+ConditionKernelCommandLine=root=/dev/mmcblk0p5
+
+[Mount]
+What=/dev/mmcblk0p2
+Where=/boot
+Type=vfat
+Options=ro
