@@ -32,6 +32,7 @@ SourcePath=/sys/firmware/devicetree/base/chosen/bootloader/tryboot
 ConditionPathExists=/sys/firmware/devicetree/base/chosen/bootloader/tryboot
 ConditionPathExists=/boot/firmware/tryboot.txt
 After=boot-firmware.mount
+ConflictedBy=rauc.service
 
 [Service]
 Type=oneshot
