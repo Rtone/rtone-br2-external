@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Copyright 2024 Gaël PORTAY
+#           2024 Rtone
+#
+# SPDX-License-Identifier: GPL-2.0-only
+#
+
+exec vcmailbox 0x00038064 4 0 1
