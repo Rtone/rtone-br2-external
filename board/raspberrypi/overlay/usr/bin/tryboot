@@ -6,4 +6,9 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 
-exec vcmailbox 0x00038064 4 0 1
+if [ "$#" -eq 0 ]
+then
+	exec vcmailbox 0x00030064 4 0 0
+fi
+
+exec vcmailbox 0x00038064 4 0 "$1"
