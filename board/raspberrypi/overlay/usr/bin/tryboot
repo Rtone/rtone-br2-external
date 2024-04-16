@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Copyright 2024 Gaël PORTAY
 #           2024 Rtone
@@ -6,9 +6,145 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
 
-if [ "$#" -eq 0 ]
+set -e
+
+autoboot() {
+	cat <<EOF
+[all]
+tryboot_a_b=1
+boot_partition=$1
+[tryboot]
+boot_partition=$2
+EOF
+}
+
+commit() {
+	autoboot "$1" "$2" >/boot/.autoboot.txt
+	mv /boot/{.,}autoboot.txt
+	sync -f /boot/autoboot.txt
+
+	if [[ -e /boot/firmware/tryboot ]]
+	then
+		mv /boot/firmware/{tryboot,config}.txt
+		sync -f /boot/firmware/config.txt
+	fi
+}
+
+tryboot() {
+	mkdir -p /run/tryboot
+	mount "/dev/mmcblk0p$1" /run/tryboot
+	trap 'umount /run/tryboot' 0
+
+	cp "${2:-/run/tryboot/config.txt}" /run/tryboot/tryboot.txt
+	sync -f /run/tryboot/tryboot.txt
+
+	umount /run/tryboot
+	trap - 0
+}
+
+if [[ "$#" -eq 0 ]] || [[ "$1" == status ]]
 then
-	exec vcmailbox 0x00030064 4 0 0
+	# Note: vcmailbox returns the following output if tryboot is unset for
+	# next boot:
+	#	
+	# 	$ vcmailbox 0x00030064 4 0 0
+	# 	0x0000001c 0x80000000 0x00030064 0x00000004 0x80000004 0x00000000 0x00000000
+	#
+	# Or the following output if tryboot is set for next boot:
+	#
+	# 	$ vcmailbox 0x00030064 4 0 0
+	# 	0x0000001c 0x80000000 0x00030064 0x00000004 0x80000004 0x00000001 0x00000000
+	read -a vcmb < <(vcmailbox 0x00030064 4 0 0)
+	if [[ "${vcmb[-2]:-0}" -eq 1 ]]
+	then
+		echo "tryboot is set for next boot"
+	else
+		echo "tryboot is unset for next boot"
+	fi
+
+	exit
 fi
 
-exec vcmailbox 0x00038064 4 0 "$1"
+if [[ "$1" == help ]] || ! [[ "$1" =~ ^(set|commit)$ ]]
+then
+	cat <<EOF
+Usage: ${0##*/} [status]
+       ${0##*/} set [TRYBOOT.TXT]
+       ${0##*/} commit
+       ${0##*/} help
+EOF
+
+	exit 1
+fi
+
+#
+# Stolen and hacked from https://ajdiaz.wordpress.com/2008/02/09/bash-ini-parser/
+#
+# Copyright (c) 2008,2010-2011 Andrés J. Díaz
+#               2024           Gaël PORTAY
+#               2024           Rtone
+#
+# SPDX-License-Identifier: MIT
+#
+cfg_parser() {
+	local BASH_COMPAT=42
+	local IFS
+	local ini
+
+	ini="$(<$1)"                               # read the file
+	ini="${ini//[/\[}"                         # escape [
+	ini="${ini//]/\]}"                         # escape ]
+	IFS=$'\n' && ini=( ${ini} )                # convert to line-array
+	ini=( ${ini[*]//;*/} )                     # remove comments with ;
+	ini=( ${ini[*]//#*/} )                     # remove comments with #
+	ini=( ${ini[*]/\	=/=} )             # remove tabs before =
+	ini=( ${ini[*]/=\	/=} )              # remove tabs after =
+	ini=( ${ini[*]/\ =\ /=} )                  # remove anything with a space around =
+	ini=( ${ini[*]/#\\[/\}$'\n'cfg.section.} ) # set section prefix
+	ini=( ${ini[*]/%\\]/ \(} )                 # convert text2function (1)
+	ini=( ${ini[*]/=/=\( } )                   # convert item to array
+	ini=( ${ini[*]/%/ \)} )                    # close array parenthesis
+	ini=( ${ini[*]/%\\ \)/ \\} )               # the multiline trick
+	ini=( ${ini[*]/%\( \)/\(\) \{} )           # convert text2function (2)
+	ini=( ${ini[*]/%\} \)/\}} )                # remove extra parenthesis
+	ini[0]=""                                  # remove first element
+	ini[${#ini[*]} + 1]='}'                    # add the last brace
+	eval "$(echo "${ini[*]}")"                 # eval the result
+}
+
+# Load autoboot.txt
+cfg_parser /boot/autoboot.txt
+
+# Load [all]
+cfg.section.all
+old_boot_partition="$boot_partition"
+
+# Check if tryboot is enabled
+if [[ "${tryboot_a_b:-0}" -eq 0 ]]
+then
+	echo "Warning: tryboot A/B is disabled, ignoring" >&2
+	exit
+fi
+
+# Load [tryboot]
+cfg.section.tryboot
+
+# Commit tryboot
+if [[ "$1" == commit ]]
+then
+	commit "$boot_partition" "$old_boot_partition"
+	cat /boot/autoboot.txt
+	exit
+fi
+
+# Set tryboot for next boot
+shift
+tryboot "$boot_partition" "$@"
+
+# Note: vcmailbox returns the following output if tryboot is set (or unset) for
+# next boot:
+#	
+#	$ vcmailbox 0x00038064 4 0 1 # or vcmailbox 0x00038064 4 0 0
+# 	0x0000001c 0x80000000 0x00038064 0x00000004 0x80000004 0x00000000 0x00000000
+#
+vcmailbox 0x00038064 4 0 1
