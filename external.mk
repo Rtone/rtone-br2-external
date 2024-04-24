@@ -1,6 +1,6 @@
 #
-# Copyright 2023-2024 Gaël PORTAY
-#           2023-2024 Rtone
+# Copyright 2023-2025 Gaël PORTAY
+#           2023-2025 Rtone
 #
 # SPDX-License-Identifier: GPL-2.0-only
 #
@@ -33,4 +33,10 @@ bmaptool-copy-$(1):
 	sudo bmaptool copy $$(BINARIES_DIR)/sdcard.img /dev/$(1)
 endef
 $(foreach devname,$(shell ( cd /sys/block && ls )),$(eval $(call bmaptool-copy,$(devname))))
+endif
+
+ifneq ($(BINARIES_DIR),)
+.PHONY: run-http-server
+run-http-server:
+	( cd $(BINARIES_DIR)/ && python -m http.server 8080 )
 endif
