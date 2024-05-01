@@ -16,6 +16,11 @@ then
 	exit 1
 fi
 
+if [[ "$part" -eq 0 ]]
+then
+	exit 1
+fi
+
 if ! unit="$(systemd-escape boot/firmware.mount)"
 then
 	exit 1
