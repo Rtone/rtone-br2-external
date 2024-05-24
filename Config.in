@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_RTONE_PATH/package/raspberrypi-firmware-rauc-bootloader-backend/Config.in"

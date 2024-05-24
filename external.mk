@@ -1,9 +1,11 @@
 #
-# Copyright 2023 Gaël PORTAY
-#           2023 Rtone
+# Copyright 2023-2024 Gaël PORTAY
+#           2023-2024 Rtone
 #
 # SPDX-License-Identifier: GPL-2.0-only
 #
+
+include $(sort $(wildcard $(BR2_EXTERNAL_RTONE_PATH)/package/*/*.mk))
 
 .PHONY: nothing
 nothing:
