@@ -3,7 +3,6 @@
 [Unit]
 Description=RAUC Good-marking Service
 After=local-fs.target
-Conflicts=tryboot-commit.service
 
 [Service]
 ExecStart=/usr/bin/rauc status mark-good
