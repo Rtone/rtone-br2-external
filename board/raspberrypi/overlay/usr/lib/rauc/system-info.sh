@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: LGPL-2.1-only
 #
 
-# An an implementation of a customized RAUC system handler for the Raspberry Pi
+# An implementation of a customized RAUC system handler for the Raspberry Pi
 # firmware.
 #
 # https://rauc.readthedocs.io/en/latest/using.html#system-based-customization-handlers
