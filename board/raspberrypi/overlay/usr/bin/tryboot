@@ -46,7 +46,7 @@ if [[ "$#" -eq 0 ]] || [[ "$1" == status ]]
 then
 	# Note: vcmailbox returns the following output if tryboot is unset for
 	# next boot:
-	#	
+	#
 	# 	$ vcmailbox 0x00030064 4 0 0
 	# 	0x0000001c 0x80000000 0x00030064 0x00000004 0x80000004 0x00000000 0x00000000
 	#
@@ -143,7 +143,7 @@ tryboot "$boot_partition" "$@"
 
 # Note: vcmailbox returns the following output if tryboot is set (or unset) for
 # next boot:
-#	
+#
 #	$ vcmailbox 0x00038064 4 0 1 # or vcmailbox 0x00038064 4 0 0
 # 	0x0000001c 0x80000000 0x00038064 0x00000004 0x80000004 0x00000000 0x00000000
 #
