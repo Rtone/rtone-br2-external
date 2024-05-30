@@ -8,12 +8,12 @@
 .PHONY: nothing
 nothing:
 
-ifndef ($(BUILD_DIR),)
+ifneq ($(BUILD_DIR),)
 .PHONY: rm-build
 rm-build:
 	rm -rf $(BUILD_DIR)/*/*
 
-ifndef ($(BASE_TARGET_DIR),)
+ifneq ($(BASE_TARGET_DIR),)
 .PHONY: rm-target
 rm-target:
 	rm -rf $(BASE_TARGET_DIR)
@@ -21,7 +21,7 @@ rm-target:
 endif
 endif
 
-ifndef ($(BASE_TARGET_DIR),)
+ifneq ($(BASE_TARGET_DIR),)
 define bmaptool-copy
 bmaptool-copy-$(1):
 	sudo bmaptool copy $$(BINARIES_DIR)/sdcard.img /dev/$(1)
