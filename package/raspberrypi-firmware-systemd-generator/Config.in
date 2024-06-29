@@ -1,6 +1,10 @@
+comment "raspberrypi-firmware-systemd-generator needs systemd"
+	depends on !BR2_PACKAGE_SYSTEMD
+
 config BR2_PACKAGE_RASPBERRYPI_FIRMWARE_SYSTEMD_GENERATOR
 	bool "raspberrypi-firmware-systemd-generator"
 	depends on BR2_PACKAGE_BUSYBOX_SHOW_OTHERS # bash
+	depends on BR2_PACKAGE_SYSTEMD # runtime
 	depends on BR2_USE_MMU # bash
 	select BR2_PACKAGE_BASH # runtime
 	help
