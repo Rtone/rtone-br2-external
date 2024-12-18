@@ -15,8 +15,8 @@ To build and use the buildroot stuff, do the following:
 You do not need to be root to build or run buildroot.  Have fun!
 
 Please feed suggestions, bug reports, insults, and bribes back to the
-git repository: https://github.com/rtone/rtone-br2-external/issues
+git repository: https://github.com/Rtone/rtone-br2-external/issues
 You can also contact us at https://rtone.fr/contact.
 
 If you would like to contribute patches, please make pull requests to
-https://github.com/rtone/rtone-br2-external/pulls
+https://github.com/Rtone/rtone-br2-external/pulls
