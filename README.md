@@ -69,4 +69,4 @@ Software Foundation, either version 2.1 of the License, or (at your option) any
 later version.
 
 [Buildroot user manual]: https://buildroot.org/downloads/manual/manual.html#requirement
-[Buildroot]: https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
+[Buildroot]: https://buildroot.org/
