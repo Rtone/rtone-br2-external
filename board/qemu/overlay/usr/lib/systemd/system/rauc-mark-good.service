@@ -1,0 +1,13 @@
+[Unit]
+Description=RAUC Good-marking Service
+After=boot-complete.target
+Requires=boot-complete.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/rauc status mark-good
+
+[Install]
+WantedBy=multi-user.target
