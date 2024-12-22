@@ -1,0 +1,2 @@
+# <device> <mount point> <type> <options> <dump>  <pass>
+/dev/vda1  /efi          vfat   rw        0       0
