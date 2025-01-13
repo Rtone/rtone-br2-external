@@ -1,6 +1,8 @@
 start_file=start4.elf
 fixup_file=fixup4.dat
 kernel=Image
+dtparam=spi=on
+dtoverlay=spi-gpio40-45
 dtoverlay=miniuart-bt,krnbt=on
 dtoverlay=vc4-kms-v3d-pi4
 arm_64bit=1
