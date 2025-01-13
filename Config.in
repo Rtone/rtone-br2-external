@@ -1,2 +1,3 @@
 source "$BR2_EXTERNAL_RTONE_PATH/package/raspberrypi-firmware-rauc-bootloader-backend/Config.in"
 source "$BR2_EXTERNAL_RTONE_PATH/package/raspberrypi-firmware-systemd-generator/Config.in"
+source "$BR2_EXTERNAL_RTONE_PATH/package/rpi-eeprom/Config.in"

@@ -1,0 +1,27 @@
+config BR2_PACKAGE_RPI_EEPROM
+	bool "rpi-eeprom"
+	depends on BR2_arm || BR2_aarch64
+	select BR2_PACKAGE_FLASHROM # runtime
+	select BR2_PACKAGE_LIBOPENSSL_BIN # runtime
+	select BR2_PACKAGE_PYTHON3 # runtime
+	select BR2_PACKAGE_RPI_USERLAND # runetime (vcgencmd)
+	help
+	  Installation scripts and binaries for the Raspberry Pi 4
+	  and Raspberry Pi 5 bootloader EEPROMs.
+
+	  https://github.com/raspberrypi/rpi-eeprom
+
+if BR2_PACKAGE_RPI_EEPROM
+
+config BR2_PACKAGE_RPI_EEPROM_BCM2711
+	bool "bcm2711 (pi4/400, cm4/4s)"
+	select BR2_PACKAGE_PCIUTILS
+	help
+	  The default set of firmwares for bcm2711.
+
+config BR2_PACKAGE_RPI_EEPROM_BCM2712
+	bool "bcm2712 (pi5/500, cm5)"
+	help
+	  The default set of firmwares for bcm2712.
+
+endif # BR2_PACKAGE_RPI_EEPROM
