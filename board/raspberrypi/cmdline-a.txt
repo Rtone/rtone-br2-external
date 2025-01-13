@@ -1,1 +1,1 @@
-root=/dev/mmcblk0p5 rootwait console=tty1 console=serial0
+root=/dev/mmcblk0p5 rootwait console=tty1 console=serial0 panic=5

@@ -9,7 +9,7 @@
 set -e
 
 slot_pre_install() {
-	echo "root=$RAUC_SLOT_DEVICE rootwait console=tty1 console=serial0" >"$RUNTIME_DIRECTORY/cmdline.txt"
+	echo "root=$RAUC_SLOT_DEVICE rootwait console=tty1 console=serial0 panic=5" >"$RUNTIME_DIRECTORY/cmdline.txt"
 }
 
 slot_post_install() {
