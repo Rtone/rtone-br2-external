@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Copyright 2024 Gaël PORTAY
-#           2024 Rtone
+# Copyright 2024-2025 Gaël PORTAY
+#           2024-2025 Rtone
 #
 # SPDX-License-Identifier: LGPL-2.1-only
 #
@@ -9,7 +9,7 @@
 set -e
 
 slot_pre_install() {
-	echo "root=$RAUC_SLOT_DEVICE console=tty1 console=serial0" >"$RUNTIME_DIRECTORY/cmdline.txt"
+	echo "root=$RAUC_SLOT_DEVICE rootwait console=tty1 console=serial0" >"$RUNTIME_DIRECTORY/cmdline.txt"
 }
 
 slot_post_install() {
