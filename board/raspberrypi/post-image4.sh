@@ -3,8 +3,8 @@
 set -e
 
 BOARD_DIR="$(dirname $0)"
-GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
-GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
+GENIMAGE_CFG="${BOARD_DIR}/genimage4.cfg"
+GENIMAGE_TMP="${BUILD_DIR}/genimage4.tmp"
 
 cp "${BOARD_DIR}/rel-ca.pem" "${BOARD_DIR}/release-1.cert.pem" "${BOARD_DIR}/release-1.pem" "${BINARIES_DIR}"
 cp "${BOARD_DIR}/raspberrypi-firmware-hook.sh" "${BINARIES_DIR}"
