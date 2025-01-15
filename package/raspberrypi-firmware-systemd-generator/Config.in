@@ -11,4 +11,4 @@ config BR2_PACKAGE_RASPBERRYPI_FIRMWARE_SYSTEMD_GENERATOR
 	  A systemd-generator for mounting the bootloader partitions of
 	  the Raspberry Pi firmware.
 
-	  https://www.portay.io/raspberrypi-firmware-systemd-generator/
+	  https://rtone.github.io/raspberrypi-firmware-systemd-generator/

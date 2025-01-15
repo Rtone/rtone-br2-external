@@ -14,4 +14,4 @@ config BR2_PACKAGE_RASPBERRYPI_FIRMWARE_RAUC_BOOTLOADER_BACKEND
 	  An implementation of a RAUC custom bootloader backend for the
 	  Raspberry Pi firmware.
 
-	  https://www.portay.io/raspberrypi-firmware-rauc-bootloader-backend/
+	  https://rtone.github.io/raspberrypi-firmware-rauc-bootloader-backend/
