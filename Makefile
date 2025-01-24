@@ -11,6 +11,7 @@ O ?= $(CURDIR)/output
 .PHONY: _all
 _all: all
 
+.PRECIOUS: buildroot
 buildroot:
 	git clone https://git.buildroot.net/buildroot $@
 
