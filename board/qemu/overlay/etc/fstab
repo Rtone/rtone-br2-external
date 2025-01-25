@@ -1,2 +1,3 @@
-# <device> <mount point> <type> <options> <dump>  <pass>
-/dev/vda1  /efi          vfat   rw        0       0
+# <device> <mount point>             <type>   <options>              <dump>  <pass>
+none       /sys/firmware/efi/efivars efivarfs ro,nosuid,nodev,noexec 0       0
+/dev/vda1  /efi                      vfat     rw                     0       0
