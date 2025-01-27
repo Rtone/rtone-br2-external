@@ -1,2 +1,3 @@
-# <device> <mount point> <type> <options> <dump>  <pass>
-/dev/vda1  /efi          vfat   rw        0       0
+# <device> <mount point> <type>   <options>           <dump>  <pass>
+/dev/vda1  /efi          vfat     rw                  0       0
+/dev/vda4  /var/lib      ext4     rw,x-systemd.makefs 0       0
