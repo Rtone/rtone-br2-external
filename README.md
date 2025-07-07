@@ -47,7 +47,7 @@ Insert the SD-card to the single-board computer, power it on, login as
 
 ## PATCHES
 
-Sumbit patches at <https://github.com/Rtone/rtone-br2-external/pulls>
+Submit patches at <https://github.com/Rtone/rtone-br2-external/pulls>
 
 ## BUGS
 
